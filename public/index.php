@@ -401,7 +401,7 @@ $breadcrumbs = $lister->getBreadcrumbs();
                 <?php endif; ?>
 
                 <!-- file list -->
-                <div class="bg-white dark:bg-slate-800 shadow-sm rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                <div class="bg-white dark:bg-white/5  shadow-sm rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
                     <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
                         <h2 class="text-lg font-semibold text-slate-900 dark:text-white lowercase">contents</h2>
                         <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 lowercase"><?= count($items) ?> items</p>
