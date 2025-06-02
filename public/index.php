@@ -7,20 +7,21 @@ class DirectoryLister
      */
     public string $currentPath;
 
+    /**
+     * @var array|string[]
+     */
     private array $excludedItems = [
-        '.git', '.svn', '.htaccess', '.env', '.DS_Store',
+        '.git', '.svn', '.htaccess', '.env', '.DS_Store', '.gitkeep',
         'Thumbs.db', '.gitignore', '.gitkeep', '.vscode',
         'node_modules', 'vendor', '.idea', 'index.php',
     ];
 
-    private string|false $basePath;
-
     /**
      * @param  string $basePath
      */
-    public function __construct(string $basePath = '../storage')
+    public function __construct(protected string $basePath = '../storage')
     {
-        $this->basePath = realpath($basePath);
+        $this->basePath = realpath($this->basePath);
         $this->currentPath = $_GET['path'] ?? '';
 
         // security check: ensure user cannot exit from storage folder
@@ -308,7 +309,8 @@ $breadcrumbs = $lister->getBreadcrumbs();
                             <div class="flex-shrink-0">
                                 <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-md flex items-center justify-center">
                                     <!-- lucide folder icon -->
-                                    <svg class="size-5 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="size-5 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
                                     </svg>
                                 </div>
@@ -320,8 +322,10 @@ $breadcrumbs = $lister->getBreadcrumbs();
                             <!-- security indicator -->
                             <div class="hidden p-2 sm:flex items-center space-x-2  bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-md text-sm">
                                 <!-- lucide shield-check icon -->
-                                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/>
+                                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/>
                                     <path d="m9 12 2 2 4-4"/>
                                 </svg>
                                 <span class="uppercase">secure</span>
@@ -330,7 +334,8 @@ $breadcrumbs = $lister->getBreadcrumbs();
                             <button onclick="toggleDarkMode()"
                                     class="p-2 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
                                 <!-- lucide sun icon -->
-                                <svg class="size-5 hidden dark:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="size-5 hidden dark:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="12" cy="12" r="4"/>
                                     <path d="M12 2v2"/>
                                     <path d="M12 20v2"/>
@@ -342,7 +347,8 @@ $breadcrumbs = $lister->getBreadcrumbs();
                                     <path d="m19.07 4.93-1.41 1.41"/>
                                 </svg>
                                 <!-- lucide moon icon -->
-                                <svg class="size-5 block dark:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg class="size-5 block dark:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
                                 </svg>
                             </button>
@@ -360,7 +366,8 @@ $breadcrumbs = $lister->getBreadcrumbs();
                             <li class="inline-flex items-center">
                                 <?php if ($index > 0): ?>
                                     <!-- lucide chevron-right icon -->
-                                    <svg class="w-4 h-4 text-slate-400 mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg class="w-4 h-4 text-slate-400 mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="m9 18 6-6-6-6"/>
                                     </svg>
                                 <?php endif; ?>
@@ -378,12 +385,13 @@ $breadcrumbs = $lister->getBreadcrumbs();
                 </nav>
 
                 <!-- back button -->
-                <?php if (!empty($lister->currentPath)): ?>
+                <?php if (! empty($lister->currentPath)): ?>
                     <div class="mb-4">
                         <a href="?path=<?= urlencode($lister->getParentPath()) ?>"
                            class="inline-flex items-center px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-md hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors lowercase">
                             <!-- lucide arrow-left icon -->
-                            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="m12 19-7-7 7-7"/>
                                 <path d="M19 12H5"/>
                             </svg>
@@ -402,7 +410,8 @@ $breadcrumbs = $lister->getBreadcrumbs();
                     <?php if (empty($items)): ?>
                         <div class="px-6 py-12 text-center">
                             <!-- lucide trash-2 icon -->
-                            <svg class="w-12 h-12 text-slate-400 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="w-12 h-12 text-slate-400 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 6h18"/>
                                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
                                 <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
@@ -423,8 +432,10 @@ $breadcrumbs = $lister->getBreadcrumbs();
                                                 <?php if ($item['isDirectory']): ?>
                                                     <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-md flex items-center justify-center">
                                                         <!-- lucide folder icon -->
-                                                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                                            <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
+                                                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path
+                                                                d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
                                                         </svg>
                                                     </div>
                                                 <?php else: ?>
@@ -457,7 +468,8 @@ $breadcrumbs = $lister->getBreadcrumbs();
                                                         <?= htmlspecialchars($item['name']) ?>
                                                     </h3>
                                                     <?php if ($item['isDirectory']): ?>
-                                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 lowercase">
+                                                        <span
+                                                            class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 lowercase">
                                                             folder
                                                         </span>
                                                     <?php endif; ?>
@@ -480,7 +492,8 @@ $breadcrumbs = $lister->getBreadcrumbs();
 
                                             <?php if ($item['isDirectory']): ?>
                                                 <!-- lucide chevron-right icon -->
-                                                <svg class="size-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <svg class="size-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                     <path d="m9 18 6-6-6-6"/>
                                                 </svg>
                                             <?php endif; ?>
