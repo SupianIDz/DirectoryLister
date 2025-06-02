@@ -253,11 +253,11 @@ $breadcrumbs = $lister->getBreadcrumbs();
 ?>
 
 <!DOCTYPE html>
-<html lang="id" class="h-full">
+<html lang="en" class="h-full">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Directory Lister - Storage</title>
+        <title>Directory Lister</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
@@ -296,50 +296,54 @@ $breadcrumbs = $lister->getBreadcrumbs();
             .file-row:hover .file-icon {
                 transform: scale(1.1);
             }
-
-            .backdrop-blur {
-                backdrop-filter: blur(10px);
-            }
         </style>
     </head>
-    <body class="bg-slate-50 font-normal text-slate-900 antialiased dark:bg-slate-900 dark:text-white min-h-full">
+    <body class="bg-slate-50 dark:bg-slate-900 min-h-full">
         <div class="min-h-screen">
-            <!-- Header -->
+            <!-- header -->
             <header class="bg-white dark:bg-slate-800 shadow-sm border-b border-slate-200 dark:border-slate-700">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex items-center justify-between h-16">
                         <div class="flex items-center space-x-4">
                             <div class="flex-shrink-0">
-                                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-5l-2-2H5a2 2 0 00-2 2z"></path>
+                                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-md flex items-center justify-center">
+                                    <!-- lucide folder icon -->
+                                    <svg class="size-5 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
                                     </svg>
                                 </div>
                             </div>
-                            <h1 class="text-xl font-semibold text-slate-900 dark:text-white">Storage Browser</h1>
+                            <h1 class="text-xl font-semibold text-slate-900 dark:text-white lowercase">storage browser</h1>
                         </div>
 
                         <div class="flex items-center space-x-2">
-                            <!-- Security indicator -->
-                            <div
-                                class="hidden sm:flex items-center space-x-2 px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-lg text-sm">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            <!-- security indicator -->
+                            <div class="hidden p-2 sm:flex items-center space-x-2  bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-md text-sm">
+                                <!-- lucide shield-check icon -->
+                                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/>
+                                    <path d="m9 12 2 2 4-4"/>
                                 </svg>
-                                <span>Secure</span>
+                                <span class="uppercase">secure</span>
                             </div>
 
                             <button onclick="toggleDarkMode()"
-                                    class="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
-                                <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                                    class="p-2 rounded-md bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
+                                <!-- lucide sun icon -->
+                                <svg class="size-5 hidden dark:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="4"/>
+                                    <path d="M12 2v2"/>
+                                    <path d="M12 20v2"/>
+                                    <path d="m4.93 4.93 1.41 1.41"/>
+                                    <path d="m17.66 17.66 1.41 1.41"/>
+                                    <path d="M2 12h2"/>
+                                    <path d="M20 12h2"/>
+                                    <path d="m6.34 17.66-1.41 1.41"/>
+                                    <path d="m19.07 4.93-1.41 1.41"/>
                                 </svg>
-                                <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                                <!-- lucide moon icon -->
+                                <svg class="size-5 block dark:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
                                 </svg>
                             </button>
                         </div>
@@ -347,26 +351,25 @@ $breadcrumbs = $lister->getBreadcrumbs();
                 </div>
             </header>
 
-            <!-- Main Content -->
+            <!-- main content -->
             <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <!-- Breadcrumb -->
-                <nav class="flex mb-6" aria-label="Breadcrumb">
+                <!-- breadcrumb -->
+                <nav class="flex mb-6" aria-label="breadcrumb">
                     <ol class="inline-flex items-center space-x-1 md:space-x-3">
                         <?php foreach ($breadcrumbs as $index => $crumb): ?>
                             <li class="inline-flex items-center">
                                 <?php if ($index > 0): ?>
-                                    <svg class="w-4 h-4 text-slate-400 mx-2" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                              clip-rule="evenodd"></path>
+                                    <!-- lucide chevron-right icon -->
+                                    <svg class="w-4 h-4 text-slate-400 mx-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="m9 18 6-6-6-6"/>
                                     </svg>
                                 <?php endif; ?>
                                 <?php if ($index === count($breadcrumbs) - 1): ?>
-                                    <span class="text-slate-500 dark:text-slate-400 font-medium"><?= htmlspecialchars($crumb['name']) ?></span>
+                                    <span class="text-slate-500 dark:text-slate-400 font-medium lowercase"><?= htmlspecialchars(strtolower($crumb['name'])) ?></span>
                                 <?php else: ?>
                                     <a href="?path=<?= urlencode($crumb['path']) ?>"
-                                       class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors">
-                                        <?= htmlspecialchars($crumb['name']) ?>
+                                       class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors lowercase">
+                                        <?= htmlspecialchars(strtolower($crumb['name'])) ?>
                                     </a>
                                 <?php endif; ?>
                             </li>
@@ -374,38 +377,40 @@ $breadcrumbs = $lister->getBreadcrumbs();
                     </ol>
                 </nav>
 
-                <!-- Back Button -->
-                <?php if (! empty($lister->currentPath)): ?>
+                <!-- back button -->
+                <?php if (!empty($lister->currentPath)): ?>
                     <div class="mb-4">
                         <a href="?path=<?= urlencode($lister->getParentPath()) ?>"
-                           class="inline-flex items-center px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                           class="inline-flex items-center px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-md hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors lowercase">
+                            <!-- lucide arrow-left icon -->
+                            <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m12 19-7-7 7-7"/>
+                                <path d="M19 12H5"/>
                             </svg>
-                            Back
+                            back
                         </a>
                     </div>
                 <?php endif; ?>
 
-                <!-- File List -->
-                <div class="bg-white dark:bg-white/5 shadow-sm rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                <!-- file list -->
+                <div class="bg-white dark:bg-slate-800 shadow-sm rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
                     <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
-                        <h2 class="text-lg font-semibold text-slate-900 dark:text-white">Contents</h2>
-                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1"><?= count($items) ?> items</p>
+                        <h2 class="text-lg font-semibold text-slate-900 dark:text-white lowercase">contents</h2>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 lowercase"><?= count($items) ?> items</p>
                     </div>
 
                     <?php if (empty($items)): ?>
                         <div class="px-6 py-12 text-center">
-                            <svg class="w-12 h-12 text-slate-400 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                 stroke-linecap="round" stroke-linejoin="round">
+                            <!-- lucide trash-2 icon -->
+                            <svg class="w-12 h-12 text-slate-400 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 6h18"/>
                                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
                                 <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
                                 <line x1="10" x2="10" y1="11" y2="17"/>
                                 <line x1="14" x2="14" y1="11" y2="17"/>
                             </svg>
-                            <h3 class="text-lg font-medium text-slate-900 dark:text-white mb-2">Empty Folder</h3>
-                            <p class="text-slate-500 dark:text-slate-400">no files or folders in this directory.</p>
+                            <h3 class="text-lg font-medium text-slate-900 dark:text-white mb-2 lowercase">empty folder</h3>
+                            <p class="text-slate-500 dark:text-slate-400 lowercase">no files or folders in this directory.</p>
                         </div>
                     <?php else: ?>
                         <div class="divide-y divide-slate-200 dark:divide-slate-700">
@@ -416,26 +421,30 @@ $breadcrumbs = $lister->getBreadcrumbs();
                                         <div class="flex items-center space-x-4 flex-1 min-w-0">
                                             <div class="file-icon flex-shrink-0">
                                                 <?php if ($item['isDirectory']): ?>
-                                                    <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                                                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-5l-2-2H5a2 2 0 00-2 2z"></path>
+                                                    <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-md flex items-center justify-center">
+                                                        <!-- lucide folder icon -->
+                                                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                            <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
                                                         </svg>
                                                     </div>
                                                 <?php else: ?>
-                                                    <div class="w-10 h-10 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center">
+                                                    <div class="w-10 h-10 bg-slate-100 dark:bg-slate-700 rounded-md flex items-center justify-center">
                                                         <?php
                                                         $extension = strtolower(pathinfo($item['name'], PATHINFO_EXTENSION));
                                                         $iconClass = "w-6 h-6 text-slate-600 dark:text-slate-400";
 
                                                         if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'])) {
-                                                            echo '<svg class="' . $iconClass . '" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>';
+                                                            // lucide image icon
+                                                            echo '<svg class="' . $iconClass . '" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>';
                                                         } else if (in_array($extension, ['pdf'])) {
-                                                            echo '<svg class="' . $iconClass . '" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>';
+                                                            // lucide file-text icon
+                                                            echo '<svg class="' . $iconClass . '" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>';
                                                         } else if (in_array($extension, ['zip', 'rar', '7z', 'tar', 'gz'])) {
-                                                            echo '<svg class="' . $iconClass . '" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>';
+                                                            // lucide archive icon
+                                                            echo '<svg class="' . $iconClass . '" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg>';
                                                         } else {
-                                                            echo '<svg class="' . $iconClass . '" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>';
+                                                            // lucide file icon
+                                                            echo '<svg class="' . $iconClass . '" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>';
                                                         }
                                                         ?>
                                                     </div>
@@ -448,14 +457,13 @@ $breadcrumbs = $lister->getBreadcrumbs();
                                                         <?= htmlspecialchars($item['name']) ?>
                                                     </h3>
                                                     <?php if ($item['isDirectory']): ?>
-                                                        <span
-                                                            class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
-                                                        Folder
-                                                    </span>
+                                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 lowercase">
+                                                            folder
+                                                        </span>
                                                     <?php endif; ?>
                                                 </div>
-                                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                                                    Modified: <?= date('d M Y H:i', $item['modified']) ?>
+                                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 lowercase">
+                                                    modified: <?= date('d M Y H:i', $item['modified']) ?>
                                                 </p>
                                             </div>
                                         </div>
@@ -471,8 +479,9 @@ $breadcrumbs = $lister->getBreadcrumbs();
                                             </div>
 
                                             <?php if ($item['isDirectory']): ?>
-                                                <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                <!-- lucide chevron-right icon -->
+                                                <svg class="size-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="m9 18 6-6-6-6"/>
                                                 </svg>
                                             <?php endif; ?>
                                         </div>
